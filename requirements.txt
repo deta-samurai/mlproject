@@ -1,7 +1,8 @@
 
-numpy
 pandas
+numpy
 matplotlib
 seaborn
--e .
+dataclasses
+#-e .
 
