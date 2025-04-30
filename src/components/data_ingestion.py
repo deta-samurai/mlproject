@@ -5,6 +5,7 @@ from src.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.data_transformation import DataTransformationConfig, DataTransformation
 
 
 @dataclass
@@ -53,14 +54,18 @@ class DataIngestion:
 import argparse
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Data Ingestion Script")
-    parser.add_argument("--log-level", type=str, default="INFO", help="Set the logging level (e.g., DEBUG, INFO, WARNING, ERROR)")
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(description="Data Ingestion Script")
+    # parser.add_argument("--log-level", type=str, default="INFO", help="Set the logging level (e.g., DEBUG, INFO, WARNING, ERROR)")
+    # args = parser.parse_args()
 
-    logging.basicConfig(level=args.log_level.upper())
+    #logging.basicConfig(level=args.log_level.upper())
     logging.info("Starting the Data Ingestion process")
 
     obj = DataIngestion()
     train_path, test_path = obj.initiate_data_ingestion()
 
     logging.info(f"Data Ingestion completed. Train data saved at: {train_path}, Test data saved at: {test_path}")
+
+    data_transformation =  DataTransformation()
+    data_transformation.initiate_data_transformation(train_path, test_path)
+    logging.info("Data Transformation completed")
